@@ -18,11 +18,12 @@ final data = const [
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: ListView.builder(
+        itemCount: 10,
         padding: EdgeInsets.zero,
         itemBuilder: (context, index) {
         return  Padding(
           padding: const EdgeInsets.symmetric(vertical: 4),
-          child: NoteItem(color: data[index],),
+          child: NoteItem(color: data.first,),
         );
       }),
     );
