@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
 
 class CustomTextFiald extends StatelessWidget {
-  CustomTextFiald({this.onChanged, this.hintText, this.obscureText = false, this.maxline=1});
-   String? hintText;
+  const CustomTextFiald(
+      {super.key, this.onSaved, this.hintText, this.maxline = 1});
+  final String? hintText;
 
-   int? maxline;
+  final int? maxline;
 
-  Function(String)? onChanged;
-  bool? obscureText;
+  final Function(String?)? onSaved;
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: (value) {
+        if (value?.isEmpty ?? true) {
+          return 'Field is required';
+        } else {
+          return null;
+        }
+      },
+      onSaved: onSaved,
       maxLines: maxline,
       cursorColor: Colors.cyan,
-      obscureText: obscureText!,
-      onChanged: onChanged,
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.white),
