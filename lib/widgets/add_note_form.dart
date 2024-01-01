@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubits/cubit/notes_cubit.dart';
+import 'package:notes_app/cubits/cubit/notes_state.dart';
 import 'package:notes_app/models/note_modle.dart';
 import 'package:notes_app/widgets/Costum_TextField.dart';
 import 'package:notes_app/widgets/Costum_buttom.dart';
@@ -49,20 +50,27 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(
             height: 32,
           ),
-          CostumBottom(
-            onTab: () {
-              if (formKey.currentState!.validate()) {
-                formKey.currentState!.save();
-                var noteModel = NoteModel(
-                    title: title!,
-                    subTitle: subTitle!,
-                    color: Colors.blue.value,
-                    date: DateTime.now().toString());
-                BlocProvider.of<AddNotesCubit>(context).addNote(noteModel);
-              } else {
-                autovalidateMode = AutovalidateMode.always;
-                setState(() {});
-              }
+          BlocBuilder<AddNotesCubit, AddNoteState>(
+            builder: (context, state) {
+              return CostumBottom(
+                
+                isloading: state is AddNoteLoading ? true: false,
+                
+                onTab: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    var noteModel = NoteModel(
+                        title: title!,
+                        subTitle: subTitle!,
+                        color: Colors.blue.value,
+                        date: DateTime.now().toString());
+                    BlocProvider.of<AddNotesCubit>(context).addNote(noteModel);
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
+                  }
+                },
+              );
             },
           ),
           const SizedBox(
