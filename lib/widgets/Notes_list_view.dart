@@ -1,31 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubits/notes_cubit/reed_notes_cubit_cubit.dart';
+import 'package:notes_app/models/note_modle.dart';
 import 'package:notes_app/widgets/Costum_note_item.dart';
 
 class NotesListViwe extends StatelessWidget {
-  const NotesListViwe({super.key,});
+  const NotesListViwe({
+    super.key,
+  });
 
-final data = const [
-    Color(0xffFFCC79),
-    Color(0xffE5E794),
-    Color(0xff76D6EE),
-    Color(0xffD89EDB)
-  ];
-  
+
+
+
 
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<ReedNotesCubitCubit, ReedNotesCubitState>(
+      builder: (context, state) {
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16),
-      child: ListView.builder(
-        itemCount: 10,
-        padding: EdgeInsets.zero,
-        itemBuilder: (context, index) {
-        return  Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4),
-          child: NoteItem(color: data.first,),
+        List<NoteModel> notes = BlocProvider.of<ReedNotesCubitCubit>(context).notes!;
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          child: ListView.builder(
+              itemCount: notes.length,
+              padding: EdgeInsets.zero,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  child: NoteItem(
+                    
+                    note: notes[index],
+                    
+                  ),
+                );
+              }),
         );
-      }),
+      },
     );
   }
 }

@@ -10,14 +10,13 @@ part 'reed_notes_cubit_state.dart';
 class ReedNotesCubitCubit extends Cubit<ReedNotesCubitState> {
   ReedNotesCubitCubit() : super(ReedNotesCubitInitial());
 
-  fetchAllNotes(NoteModel note)  {
-    emit(ReedNotesCubitLoading());
-    try {
-      var notesBox = Hive.box<NoteModel>(kNotesBox);
-      
-      emit(ReedNotesCubitSuccess(notesBox.values.toList()));
-    } catch (e) {
-      ReedNotesCubitFailer(e.toString());
-    }
+  List<NoteModel>? notes;
+
+  fetchAllNotes() {
+    var notesBox = Hive.box<NoteModel>(kNotesBox);
+
+  notes = notesBox.values.toList();
+
+
   }
 }

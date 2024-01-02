@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:notes_app/constans/constant.dart';
+import 'package:notes_app/cubits/notes_cubit/reed_notes_cubit_cubit.dart';
 
 import 'package:notes_app/models/note_modle.dart';
 import 'package:notes_app/simple_bloc_observer.dart';
@@ -15,16 +16,7 @@ void main() async {
   Hive.registerAdapter(NoteModelAdapter());
 
   await Hive.openBox<NoteModel>(kNotesBox);
-=======
-import 'package:hive_flutter/adapters.dart';
-import 'package:notes_app/constans/constant.dart';
-import 'package:notes_app/views/notes_%20view.dart';
 
-void main() async {
-  await Hive.initFlutter();
-
-await Hive.openBox(kNotesBox);
->>>>>>> 6f8130e3485e56b3736b48adb9408077a34233d8
   runApp(const NotesApp());
 }
 
