@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/widgets/Costum_note_item.dart';
+
 import 'package:notes_app/widgets/Notes_list_view.dart';
 import 'package:notes_app/widgets/costum_appbar.dart';
 
