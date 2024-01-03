@@ -15,8 +15,8 @@ class ReedNotesCubitCubit extends Cubit<ReedNotesCubitState> {
   fetchAllNotes() {
     var notesBox = Hive.box<NoteModel>(kNotesBox);
 
-  notes = notesBox.values.toList();
+    notes = notesBox.values.toList();
 
-
+    emit(ReedNotesSuccess());
   }
 }
