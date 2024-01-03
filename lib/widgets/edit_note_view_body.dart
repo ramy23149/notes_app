@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/constans/constant.dart';
+import 'package:notes_app/cubits/cubit/notes_cubit.dart';
 import 'package:notes_app/cubits/notes_cubit/reed_notes_cubit_cubit.dart';
 import 'package:notes_app/models/note_modle.dart';
 import 'package:notes_app/widgets/Costum_TextField.dart';
+import 'package:notes_app/widgets/colors_list_view.dart';
 import 'package:notes_app/widgets/costum_appbar.dart';
+import 'package:notes_app/widgets/edit_note_colors_listview.dart';
 
 class EditNoteViewBody extends StatefulWidget {
   const EditNoteViewBody({super.key, required this.note});
@@ -44,7 +48,6 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
             height: 50,
           ),
           CustomTextFiald(
-            
             onChanged: (value) {
               title = value;
             },
@@ -62,6 +65,9 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
             hintText: 'Contant',
             maxline: 5,
           ),
+          EditNoteColorsList(
+            note: widget.note,
+          )
         ],
       ),
     );
