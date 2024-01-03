@@ -20,7 +20,6 @@ class AddNoteForm extends StatefulWidget {
 class _AddNoteFormState extends State<AddNoteForm> {
   final GlobalKey<FormState> formKey = GlobalKey();
 
-  
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   String? title, subTitle;
@@ -60,8 +59,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 onTab: () {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
-                     DateTime now = DateTime.now();
-  String formattedDate = DateFormat.yMd().format(now);
+                    DateTime now = DateTime.now();
+                    String formattedDate = DateFormat.yMd().format(now);
 
                     var noteModel = NoteModel(
                       title: title!,
