@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/widgets/costum_search_icon.dart';
 
 class CostumAppbar extends StatelessWidget {
-  const CostumAppbar({super.key, required this.title, required this.icon});
+  const CostumAppbar({super.key, required this.title, required this.icon, this.onPressed});
   final String title;
   final IconData icon;
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           title,
@@ -16,7 +18,9 @@ class CostumAppbar extends StatelessWidget {
           ),
         ),
         const Spacer(),
-         CostumIcon(icon: icon)
+        CostumIcon(icon: icon,
+        onPressed: onPressed,
+        )
       ],
     );
   }
